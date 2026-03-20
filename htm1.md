@@ -122,3 +122,9 @@ footer { width: 100%; height: 15%; clear: both;
 <footer>footer</footer>
 </body>
 </head>
+
+# 과제
+<!DOCTYPE html>
+<html>
+<head>
+<title>과제</title>
