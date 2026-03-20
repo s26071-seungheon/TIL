@@ -75,3 +75,21 @@
 </video>
 </body>
 </html>
+
+# 6
+<!DOCTYPE html>
+<html>
+<head>
+<meta chasrest="utf-8">
+<title>오디오 삽입</title>
+</head>
+<body>
+<h3>오디오 삽입</h3>
+<hr>
+재생 버튼을 누르면 음악이 연주됩니다.
+<audio src="오디오 사이트 넣기"
+	   controls loop>
+ 브라우저가 audio 태그를 지원하지 않습니다.
+</audio>
+</body>
+</html>
