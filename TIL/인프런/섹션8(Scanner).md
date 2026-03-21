@@ -27,9 +27,13 @@
         double b = scanner.nextDouble(); //입력을 실수로 가져온다.
         System.out.println("입력한 실수 " + b);
      }
-    } 
-  ### 주의할 것 : 입력할 때 숫자 타입에 문자타입 넣으면 오류발생
-  ### 즉, 타입이 같아야함.
+    }
+
+# Scanner시 주의
+ ### 입력할 때 숫자 타입에 문자타입 넣으면 오류발생
+ ### 즉, 타입이 같아야함.
+### Scanner.nextInt()는 숫자만 가져가고 내가 누른 엔터는 가져가지 않는다<br> 그렇기 때문에 다음 Scanner.nextLine때 엔터가 입력되어 입력을 하지 못한다.<br> 방지하기위해 Scanner.nextLine을 중간에 한 번 더 넣는다.
 
 # while안에 Scanner
  ### while((input = scanner.nextInt()) !=-1)처럼 scanner로 입력을 하고 조건을 비교할 수 있다.
+
