@@ -3,10 +3,10 @@
   ### System.in을 통해 사용자의 입력을 받는다.
   ### Scanner클래스를 이용해서 사용한다.
   #### 1. import java.util.Scanner
-  #### 2. Scanner scanner(변수명) = new Scanner(System.in)
-  #### 3(1). String str(변수명) = scanner.nextLine()(문자열일떄)
-  #### 3(2). int a(변수명) = scanner.nextInt()(정수형일때)
-  #### 3(3). double b(변수명) = scanner.nextDouble()(실수형일때)
+  #### 2. Scanner (변수명) = new Scanner(System.in)
+  #### 3(1). String (변수명) = scanner.nextLine()(문자열일떄)
+  #### 3(2). int (변수명) = scanner.nextInt()(정수형일때)
+  #### 3(3). double (변수명) = scanner.nextDouble()(실수형일때)
     package Scanner;
 
     import java.util.Scanner;
