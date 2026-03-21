@@ -31,6 +31,5 @@
   ### 주의할 것 : 입력할 때 숫자 타입에 문자타입 넣으면 오류발생
   ### 즉, 타입이 같아야함.
 
- ## println, print
-  ### println은 출력하고 다음 줄로 넘긴다.
-  ### print는 출력하고 다음 라인으로 넘기지 않는다.
+# while안에 Scanner
+ ### while((input = scanner.nextInt()) !=-1) scanner로 입력을 하고 조건을 비교할 수 있다.
