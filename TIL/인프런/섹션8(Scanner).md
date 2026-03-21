@@ -32,4 +32,4 @@
   ### 즉, 타입이 같아야함.
 
 # while안에 Scanner
- ### while((input = scanner.nextInt()) !=-1) scanner로 입력을 하고 조건을 비교할 수 있다.
+ ### while((input = scanner.nextInt()) !=-1)처럼 scanner로 입력을 하고 조건을 비교할 수 있다.
