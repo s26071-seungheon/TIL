@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>게시글 목록</title>
+</head>
+<body>
+    <h2>게시글 목록</h2>
+    <a href="/post/new">
+        <button type="button">홈으로</button>
+    </a>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>제목</th>
+            <th>내용</th>
+        </tr>
+        </thead>
+        <tbody id="post-table-body"></tbody>
+    </table>
+    <script>
+        function loadPosts() {
+            fetch('/posts?t=' + new Date().getTime())
+                .then(res => res.json())
+                .then(data => {
+                    const tbody = document.getElementById('post-table-body');
+                    tbody.innerHTML = '';
+
+                    data.forEach((post, index) => {
+                        const row = `
+                    <tr>
+                        <td>${index + 1}</td>
+                        <td style="text-align: left;">${post.title}</td>
+                        <td style="text-align: left;">${post.content}</td>
+                        <td>
+                            <button onclick="editPost(${post.id})">수정</button>
+                            <button class="btn-del" onclick="deletePost(${post.id})">삭제</button>
+                        </td>
+                    </tr>`;
+                        tbody.innerHTML += row;
+                    });
+
+                    if (data.length === 0) {
+                        tbody.innerHTML = '<tr><td colspan="4">게시글이 없습니다.</td></tr>';
+                    }
+                })
+                .catch(err => console.error("로딩 에러:", err));
+        }
+
+        function deletePost(id) {
+            if (confirm("정말로 삭제하시겠습니까?")) {
+                fetch(`/post/${id}`, {
+                    method: 'DELETE'
+                })
+                    .then(res => {
+                        if (res.ok) {
+                            alert("삭제되었습니다.");
+                            loadPosts();
+                        }
+                    });
+            }
+        }
+        loadPosts();
+
+        function editPost(id) {
+            const newTitle = prompt("수정할 제목을 입력하세요.");
+            const newContent = prompt("수정할 내용을 입력하세요.");
+
+            if (newTitle && newContent) {
+                const updateData = {
+                    title: newTitle,
+                    content: newContent
+                };
+
+                fetch(`/post/${id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(updateData)
+                })
+                    .then(res => {
+                        if (res.ok) {
+                            alert("수정되었습니다.");
+                            loadPosts(); // 목록 새로고침
+                        }
+                    });
+            }
+        }
+    </script>
+</body>
+</html>
