@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>게시글</title>
+</head>
+<body>
+<h2>게시글</h2>
+<button type="button" onclick="savePost()">만들기</button>
+<a href="/post/list">
+    <button type="button">게시글 목록</button>
+</a>
+<script>
+    function savePost() {
+        const title = prompt("제목 입력");
+        const content = prompt("내용 입력");
+
+        if (title && content) {
+            const postData = {
+                title: title,
+                content: content
+            };
+
+            fetch('/post/new', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(postData)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        location.href = "/post/list";
+                    }
+                })
+        }
+    }
+</script>
+</body>
+</html>
