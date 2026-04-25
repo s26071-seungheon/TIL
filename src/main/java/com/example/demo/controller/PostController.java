@@ -15,13 +15,12 @@ public class PostController {
     private final PostService postService;
 
     @PostMapping("/create")
-    @ResponseBody
-    public ResponseEntity<Void> create(@RequestBody PostDto postDto) {
-        postService.save(postDto);
-            return ResponseEntity.ok().build();
+    public ResponseEntity<PostDto> create(@RequestBody PostDto postDto) {
+    PostDto savedPost = postService.save(postDto);
+            return ResponseEntity.ok(savedPost);
     }
 
-    @GetMapping("")
+    @GetMapping
     public List<PostDto> getPosts() {
         return postService.findAll();
     }
@@ -31,13 +30,13 @@ public class PostController {
     }
 
     @PatchMapping("/update/{id}")
-    public ResponseEntity<Void> update(@PathVariable Long id, @RequestBody PostDto postDto) {
-        postService.update(id, postDto);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<PostDto> update(@PathVariable Long id, @RequestBody PostDto postDto) {
+       PostDto savedPatch = postService.update(id, postDto);
+        return ResponseEntity.ok(savedPatch);
     }
     @DeleteMapping("/remove/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         postService.delete(id);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.noContent().build();
     }
 }

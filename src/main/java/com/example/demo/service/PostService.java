@@ -15,12 +15,13 @@ import java.util.List;
 public class PostService {
     private final PostRepository postRepository;
 
-    public void save(PostDto postDto) {
+    public PostDto save(PostDto postDto) {
         PostEntity postEntity = new PostEntity();
         postEntity.setTitle(postDto.getTitle());
         postEntity.setContents(postDto.getContents());
 
-        postRepository.save(postEntity);
+        PostEntity savedEntity = postRepository.save(postEntity);
+        return PostDto.fromEntity(savedEntity);
     }
     public List<PostDto> findAll() {
         return postRepository.findAll()
@@ -29,7 +30,7 @@ public class PostService {
                 .toList();
     }
 
-    public void update(Long id, PostDto postDto) {
+    public PostDto update(Long id, PostDto postDto) {
         PostEntity postEntity = postRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id=" + id));
 
@@ -39,6 +40,7 @@ public class PostService {
         if (postDto.getContents() != null) {
             postEntity.setContents(postDto.getContents());
         }
+        return PostDto.fromEntity(postEntity);
     }
 
     public PostDto findById(Long id) {
